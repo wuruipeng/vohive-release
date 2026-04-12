@@ -1,6 +1,6 @@
 # Quickstart
 
-1. 安装 stable：
+1. 安装最新版本：
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/iniwex5/vohive-release/master/install.sh | bash

@@ -30,7 +30,6 @@ curl -fsSL https://raw.githubusercontent.com/iniwex5/vohive-release/master/unins
 
 - `install.sh`：安装/升级脚本
 - `uninstall.sh`：卸载脚本
-- `versions.json`：`stable/latest` 版本索引
 - `systemd/vohive.service`：默认服务模板
 - `docs/`：快速开始、升级、回滚、安全说明
 

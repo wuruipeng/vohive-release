@@ -2,7 +2,6 @@
 set -euo pipefail
 
 REPO="${VOHIVE_RELEASE_REPO:-iniwex5/vohive-release}"
-RAW_BASE="https://raw.githubusercontent.com/${REPO}/master"
 CHANNEL="stable"
 VERSION=""
 NO_SYSTEMD=0
@@ -58,11 +57,6 @@ need_cmd() {
   }
 }
 
-extract_json_value() {
-  local key="$1"
-  sed -n "s/.*\"${key}\"[[:space:]]*:[[:space:]]*\"\([^\"]*\)\".*/\1/p" | head -n1
-}
-
 resolve_version() {
   local v="$1"
   if [[ -n "${v}" && "${v}" != "latest" && "${v}" != "stable" ]]; then
@@ -70,18 +64,17 @@ resolve_version() {
     return 0
   fi
 
-  local idx
-  idx="$(curl -fsSL "${RAW_BASE}/versions.json")"
-  local key="${CHANNEL}"
-  if [[ "${v}" == "latest" || "${CHANNEL}" == "latest" ]]; then
-    key="latest"
-  fi
-
+  local api_url="https://api.github.com/repos/${REPO}/releases/latest"
+  local latest_json
+  latest_json="$(curl -fsSL "${api_url}")"
   local resolved
-  resolved="$(printf '%s\n' "${idx}" | extract_json_value "${key}")"
+  resolved="$(printf '%s\n' "${latest_json}" | sed -n 's/.*"tag_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -n1)"
   if [[ -z "${resolved}" ]]; then
-    err "Cannot resolve version from versions.json (key=${key})."
+    err "Cannot resolve latest release tag from GitHub API."
     exit 1
+  fi
+  if [[ "${CHANNEL}" == "stable" ]]; then
+    log "--channel stable currently maps to latest release"
   fi
   printf '%s\n' "${resolved}"
 }
@@ -202,7 +195,7 @@ main() {
 
   local tmp
   tmp="$(mktemp -d)"
-  trap 'rm -rf "${tmp}"' EXIT
+  trap "rm -rf '${tmp}'" EXIT
 
   local tarball="${tmp}/${asset}"
 
