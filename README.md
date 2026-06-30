@@ -16,7 +16,6 @@ VoHive 是面向高通 4G/5G 模组场景的一体化测试平台，核心能力
 - 网页/Bot收发短信
 - 多卡统一管理
 - 实体 ESIM/eUICC 管理（加卡，切卡，删卡）
-- 轻量代理能力：支持 `SOCKS5/HTTP` 实例，按设备网卡强绑定出站。
 - TelegramBot / 飞书Bot / QQBot
 - 在条件满足时启用 VoWiFi测试
 - 通过 `/vocall` 发起 VoWiFi 模拟外呼测试
@@ -193,6 +192,9 @@ http://你的服务器IP:7575
 - O2 DE
 
 - T-Mobile US
+- RedPocket US
+- Lyca US
+- AT&T US
 - 未标出的不代表不兼容，只是我没有
 ### 程序截图
 
@@ -205,8 +207,6 @@ http://你的服务器IP:7575
 ![image](https://cdn.nodeimage.com/i/jbbwBuP1Zu9iPpfZrSsXzftGo0et5i4F.png)
 
 ![image](https://cdn.nodeimage.com/i/P7BpZu8fF98622Q3VCZlafg4aBHVM8Qu.png)
-
-![image](https://cdn.nodeimage.com/i/dZp8KPWC8VlQrD8RakdYJLL09IaXQAqQ.png)
 
 ![image](https://cdn.nodeimage.com/i/X5Ps5w9AHo1Qas6DDsnxYnbrfYcVhAfV.png)
 
