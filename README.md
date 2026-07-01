@@ -74,26 +74,30 @@ echo 'AT+QCFG="usbnet",0;+CFUN=1,1' | sudo socat - /dev/ttyUSB2,crnl
 
 ## 四、部署方式一：一键安装
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/iniwex5/vohive-release/master/install.sh | bash
+Linux / OpenWrt：
+
+```sh
+wget -O - https://raw.githubusercontent.com/iniwex5/vohive-release/master/install.sh | sh
 ```
+
+说明：旧的 `curl -fsSL ... | bash` 方式仍然兼容。
 
 指定版本：
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/iniwex5/vohive-release/master/install.sh | bash -s -- --version v1.0.0
+```sh
+wget -O - https://raw.githubusercontent.com/iniwex5/vohive-release/master/install.sh | sh -s -- --version v1.5.3
 ```
 
-仅安装二进制（不安装 systemd）：
+仅安装二进制（跳过自动服务注册，兼容旧参数名 `--no-systemd`）：
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/iniwex5/vohive-release/master/install.sh | bash -s -- --no-systemd
+```sh
+wget -O - https://raw.githubusercontent.com/iniwex5/vohive-release/master/install.sh | sh -s -- --no-systemd
 ```
 
 卸载：
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/iniwex5/vohive-release/master/uninstall.sh | bash
+```sh
+wget -O - https://raw.githubusercontent.com/iniwex5/vohive-release/master/uninstall.sh | sh
 ```
 
 
